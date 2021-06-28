@@ -10,43 +10,65 @@
 
 <h2> Eleições para sindico</h2>
 <label>Selecione o seu candidato</label>
+<?php 
+?>
 <form method="post" action="">
 <label>Candidato: </label>
 <select name = "candidato">
 <option value="x">[-----SELECIONE-----]</option>
-<option value="1">[-----YODA-----]</option>
-<option value="2">[-----NIVY-----]</option>
-<option value="3">[-----JUKES-----]</option>
+<option value="1">YODA</option>
+<option value="2">NIVY</option>
+<option value="3">JUKES</option>
 </select>
 <input type="submit" value="Votar" name="voto">
 </form>
 <?php
-if($_POST['voto']){
+$repete=1;
+$cand1 = 0; $cand2 = 0; $cand3 = 0; $nulo = 0;
+$vencedor = 0;
+$nomeVencedor;
+
+if(isset($_POST['voto'])){
+    setcookie($cookie_c1,"0");
+    setcookie($cookie_c2,"0");
+    setcookie($cookie_c3,"0");
+    setcookie($cookie_n,"0");
+    setcookie($cookie_cotador,"1");
+    setcookie($cookie_vencedor,"0");
 
     $candidato = $_POST['canditado'];
-
+ do{
     switch($candidato){
 
-        case(1): echo" Yoda foi votado"; break;
-        case(2): echo" Nivy foi votado"; break;
-        case(3): echo" Jukes foi votado"; break;
+        case(1): echo" Yoda foi votado"; $cand1++; break;
+        case(2): echo" Nivy foi votado"; $cand2++; break;
+        case(3): echo" Jukes foi votado"; $cand3; break;
         default: echo"NA voto";
   
     }
     
+} while($repete >5);
+for ($x = 0;$x<3;$x++){
+    if($vencedor < $cand1){
+        $vencedor = $cand1;
+        $nomeVencedor = "YODA";
+    }
+    if($vencedor < $cand2){
+        $vencedor = $cand2;
+        $nomeVencedor = "NIVY";
+    }
+    if($vencedor < $cand3){
+        $vencedor = $cand3;
+        $nomeVencedor = "JUKES";
+    }
+    
 }
 
+}
+echo "<br> O sindico eleito: $nomeVencedor, com $vencedor votos";
+echo "<br> Votos nulos: $nulo";
 
 ?>
     
 </body>
 </html>
-
-
-$idade = 25;
-
-switch($idade){
-    case($idade < 18): echo "Novão"; break;
-    case($idade > 18): echo "Da pra dale"; break;
-    default: echo"Ta velho pra krl";
-}
