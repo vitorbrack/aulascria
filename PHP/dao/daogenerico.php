@@ -11,7 +11,7 @@ function inserir(pessoa $p){
 $conn = new Conecta();
 if($conn == true){
     $sql ="insert into pessoa values (null,'".$p->getNome() 
-    bauabababuabuabauba
+    bau
 }
 }
 
