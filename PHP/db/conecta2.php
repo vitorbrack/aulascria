@@ -1,11 +1,11 @@
 <?php
 
-class Conecta{
+class Conecta2{
 
     private $url = "localhost";
     private $user = "root";
     private $password = "senac";
-    private $base = "dbphp01";
+    private $base = "dbproduto";
     public $db;
 
     public function conectadb(){

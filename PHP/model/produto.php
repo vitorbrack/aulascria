@@ -1,23 +1,23 @@
 <?php
 class produto{
 
-    private $id;
-    private $nome;
+    private $idproduto;
+    private $nomeProduto;
     private $vlrCompra;
     private $vlrVenda;
     private $qtdEstoque;
 
-    function setId($id){
-        $this->id = $id;
+    function setId($idproduto){
+        $this->idproduto = $idproduto;
     }
     function getId(){
-        return $this->id;
+        return $this->idproduto;
     }
-    function setnome($nome){
-        $this->nome = $nome;
+    function setnomeProduto($nomeProduto){
+        $this->nomeProduto = $nomeProduto;
     }
-    function getnome(){
-        return $this->nome;
+    function getnomeProduto(){
+        return $this->nomeProduto;
     }
     function setvlrCompra($vlrCompra){
         $this->vlrCompra = $vlrCompra;
