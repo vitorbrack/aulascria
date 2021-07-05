@@ -1,0 +1,253 @@
+@media screen and (min-width: 0px) {
+		
+	header {
+		height: 200px;
+		background-position: top;
+	}
+	
+	header p{
+		font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+		font-size: 18px;
+		color: #ffffff;
+		text-shadow: 1px 2px 3px #000;
+	}
+
+	h1{
+		padding-top: 80px;
+		font-size:60px;
+	}
+	
+	.botaozap {
+		position:fixed;
+		display: block;
+		bottom: 10px;
+		right: 10px;
+	}
+	
+	#menu-superior{
+		display: block;
+	}
+	
+	nav {
+		text-align:center;
+	}
+	
+	#logo-menu span{
+		display: none;
+	}
+	
+	nav ul li {
+		display: block;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		border: 0.5px solid #062C51;
+	}
+	
+	.menu-suspenso{
+		position: static;
+		transition: 0.5s;
+	}
+	
+	.menubtn:active .menu-suspenso{
+		display: none;
+	}
+	
+	section.primeiro-bloco{
+		background-position: top;
+		text-align: center;
+	}
+	
+	.img-entrada img{
+		display: none;
+	}
+	
+	.texto-entrada{
+		padding-bottom: 20px;
+	}
+	
+	.texto-entrada p{
+		width: 100%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		padding-right: 0;
+		padding-top: 6%;
+		position: static;
+		float: none;
+	}
+    
+	.texto-entrada p{
+		text-align: center;
+		font-size: 1em;
+	}
+
+	.texto-entrada h2{
+		font-size: 3em;
+	}
+
+	section.segundo-bloco{
+		display: block;
+	}
+
+    .img-segundo-bloco img{
+		display: none;
+	}
+	
+	.texto-segundo-bloco{
+		width: 100%;
+		padding-bottom: 50px;
+		padding-left: 0;
+		text-align:center ;
+		float: none;
+		position: static;
+	}
+	
+	.texto-segundo-bloco p{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.texto-segundo-bloco p{
+		text-align: center;
+		font-size: 1em;
+	}
+
+	.texto-segundo-bloco h2{
+		font-size: 3em;
+	}
+
+	section.espaco-branco{
+		height: 50px;
+	}
+
+	.series-corpo{
+		display: block;
+		width: 90%;
+		margin-bottom: 20px;
+	}
+}
+
+@media screen and (min-width: 768px) {}
+
+@media screen and (min-width: 1200px) {
+
+    .botaozap{
+        display: none;
+    }
+
+    header{
+		height: 400px;
+		background-position: center;
+	}
+
+	h1{
+		padding-top: 80px;
+		font-size:120px;
+	}
+    
+    nav{
+		height: 45px;
+        text-align:center;
+    }
+
+    #menu-superior{
+        display: inline-block;
+        width: 90%;
+    }
+
+    #logo-menu span{
+        display: inherit;
+        font-family: Anton, sans serif;
+        color: #ffffff;
+        font-size: 20px;
+        float: left;
+        padding: 14px;
+    }
+
+    nav ul{
+        float: right;
+    }
+
+    nav ul li {
+        display: inline-block;
+        border: none;
+        padding: 14px;
+    }
+
+    nav ul li a{
+        padding: 13px;
+		width: auto;
+    }
+
+	nav ul li:hover{
+		background-color: #5C84AA;
+	}
+	
+	nav ul li.ativo{
+		background-color: #13406B;
+	}
+
+    .menu-suspenso{
+        position: absolute;
+        margin-top: 10px;
+    }
+
+	.menu-suspenso a:hover{
+		background-color: #c6c6c6;
+	}
+
+	.texto-entrada{
+		width: 50%;
+		padding-right: 50px;
+		padding-top: 6%;
+		position: relative;
+		float: left;
+	}
+
+	.texto-entrada p{
+		text-align: justify;
+		font-size: 1.2em;
+	}
+
+	.texto-entrada h2{
+		font-size: 4em;
+	}
+
+	.img-entrada img{
+		display: inherit;
+	}
+
+	section.segundo-bloco{
+		display: inline-block;
+	}
+
+    .texto-segundo-bloco{
+		width: 40%;
+        padding-bottom: 100px;
+		padding-left: 40px;
+        text-align: right ;	
+		float: right;
+		position: relative;
+    }
+
+	.img-segundo-bloco img{
+		display: inherit;
+	}
+
+	.texto-segundo-bloco p{
+		text-align: justify;
+		font-size: 1.2em;
+	}
+
+	.texto-segundo-bloco h2{
+		font-size: 4em;
+	}
+
+	section.espaco-branco{
+		height: 100px;
+	}
+
+	.series-corpo{
+		display: inline-block;
+		width: 200px;
+	}
+}

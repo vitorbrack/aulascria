@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Expressões Regulares</title>
+        <style>
+            .vermelho{
+                outline: 0;
+                border: 1px solid #ff0000;
+            }
+            .azul{
+                outline: 0;
+                border: 1px solid #0000ff;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <label for="cep">CEP</label>
+            <input type="text" name="cep" id="cep" onblur="verificaCep()" class="vermelho" required>
+            <input type="submit" name="enviar" value="enviar">
+        </form>
+
+        <script src="js/formExplica.js"></script>
+    </body>
+</html>
