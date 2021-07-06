@@ -1,3 +1,6 @@
+<?php
+include_once 'controller/ProdutoController.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +20,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,24 +57,23 @@
             <div class="col-8 offset-2">
 
                 <div class="card-header bg-light text-center border" style="padding-bottom: 15px; padding-top: 15px;">
-                    Cadastro  Produto
+                    Cadastro Produto
                 </div>
                 <?php
                 //envio dos dados para o BD
                 if (isset($_POST['cadastrarproduto'])) {
-                    include_once 'controller/ProdutoController.php';
                     $nomeProduto = $_POST['nomeProduto'];
                     $vlrcompra = $_POST['vlrcompra'];
                     $vlrvenda = $_POST['vlrvenda'];
                     $qtdEstoque = $_POST['qtdEstoque'];
-                   
+
                     $pc = new ProdutoController();
                     echo "<p>" . $pc->inserirProduto(
                         $nomeProduto,
                         $vlrcompra,
                         $vlrvenda,
                         $qtdEstoque
-                       
+
                     ) . "</p>";
                 }
                 ?>
@@ -80,7 +82,7 @@
                     <form method="post" action="">
                         <div class="row">
                             <div class="col-md-6 offset-md-3">
-                                <label>Código: </label> <br>
+                                <label>Código</label> <br>
                                 <label>Produto</label>
                                 <input class="form-control" type="text" name="nomeProduto">
                                 <label>Valor compra</label>
@@ -96,6 +98,54 @@
                         </div>
                     </form>
                 </div>
+                <table class="table">
+                    <thead class="thead-dark bg-dark text-white">
+                        <tr>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Compra (R$)</th>
+                            <th scope="col">Venda (R$)</th>
+                            <th scope="col">Estoque</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                       $pcTable = new ProdutoController();
+                       $listaProdutos = $pcTable->listarProdutos();
+
+                       foreach ($listaProdutos as $lp) {
+                      
+
+
+                       /* print_r("<tr><td>" . $lp->getIdProduto() . "</td>");
+                        print_r("<td>" . $lp->getNomeProduto() . "</td>");
+                        print_r("<td>" . $lp->getVlrCompra(). "</td>");
+                        print_r("<td>" . $lp->getVlrVenda() . "</td>");
+                        print_r("<td>" . $lp->getQtdEstoque() . "</td></tr>");
+                    }
+                    ?>
+                        print_r("<td>" . $lp->getQtdEstoque() . "</td></tr>");*/
+
+
+                        ?>  
+                        <tr>
+                            <td><?php print_r($lp->getIdproduto());?></td>
+                            <td><?php print_r($lp->getNomeProduto());?></td>
+                            <td><?php print_r($lp->getVlrCompra());?></td>
+                            <td><?php print_r($lp->getVlrVenda());?></td>
+                            <td><?php print_r($lp->getQtdEstoque());?></td>
+                            <td><a class="btn btn-outline-dark" href="#">Editar</a>
+                            <a class="btn btn-outline-danger" href="#">Excluir</a>
+                            </td>
+                        </tr>    
+
+                        <?php    
+                     } 
+
+                    ?>          
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

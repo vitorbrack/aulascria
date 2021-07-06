@@ -18,4 +18,10 @@ class ProdutoController {
         $daoProduto = new DaoProduto();
         return $daoProduto -> inserir($produto);
     }
+
+    //metedo para carregar a lista de produtos que vem da DAO
+        public function listarProdutos(){
+            $daoProduto = new daoProduto();
+            return $daoProduto ->listarProdutoDAO();
+        }
 }

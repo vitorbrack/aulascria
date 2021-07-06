@@ -85,7 +85,7 @@
                         </div>
                     </form>
                     <?php
-                    include_once ('../projeto-php/controller/LivroController.php');
+                    include_once ('controller/LivroController.php');
                     //envio dos dados para o banco
                     if (isset($_POST['cadastrarLivro'])) {
                         $titulo = $_POST['titulo'];

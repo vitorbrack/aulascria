@@ -23,7 +23,29 @@ class daoProduto{
         return $msg;
 
     }
-
+     public function listarProdutoDAO(){
+        $conn = new Conecta2();
+        if ($conn->conectadb()) {
+            $sql = "select * from produto";
+            $query = mysqli_query($conn->conectadb(), $sql);
+            $result = mysqli_fetch_array($query);
+            $lista = array();
+            $a = 0;
+            if ($result){}
+            do{
+                $produto = new Produto();
+                $produto->setIdProduto($result['idproduto']);
+                $produto->setNomeProduto($result['nomeProduto']);
+                $produto->setVlrCompra($result['valorCompra']);
+                $produto->setVlrVenda($result['valorVenda']);
+                $produto->setQtdEstoque($result['qtdEstoque']);
+                $lista[$a] = $produto;
+                $a++;
+            }while($result = mysqli_fetch_array($query));
+            mysqli_close($conn->conectadb());
+            return $lista;
+         }
+     }
 }
 
 

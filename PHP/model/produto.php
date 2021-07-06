@@ -7,10 +7,10 @@ class produto{
     private $vlrVenda;
     private $qtdEstoque;
 
-    function setId($idproduto){
+    function setidproduto($idproduto){
         $this->idproduto = $idproduto;
     }
-    function getId(){
+    function getidproduto(){
         return $this->idproduto;
     }
     function setnomeProduto($nomeProduto){
