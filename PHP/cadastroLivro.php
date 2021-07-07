@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Teste</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -17,6 +17,11 @@
             margin-top: 20px;
             padding-left: 10px;
             padding-right: 10px;
+        }
+
+        th,
+        td {
+            text-align: center;
         }
     </style>
 </head>
@@ -60,10 +65,10 @@
     </nav>
 
     <div class="container-fluid ">
-        <div class="row">
-            <div class="col-4 offset-4">
+        <div class="row" style="margin-top: 45px;">
+            <div class="col-8 offset-2">
                 <div class="card-header bg-light text-center">
-                    Cadastro de Produto
+                    Cadastro de Livro
                 </div>
                 <div class="card-body border">
                     <form method="post" action="">
@@ -78,14 +83,16 @@
                                 <input type="text" class="form-control" name="editora" required>
                                 <label>qtdEstoque</label>
                                 <input type="number" class="form-control" name="qtdEstoque" required>
-                                <input type="submit" name="cadastrarLivro" class="btn btn-success btInput" value="Enviar">
-                                &nbsp; &nbsp;
-                                <input type="reset" class="btn btn-danger btInput" value="Limpar">
+                                <div class=" col-6 mx-auto">
+                                    <input type="submit" name="cadastrarLivro" class="btn btn-success btInput" value="Enviar">
+                                    &nbsp; &nbsp;
+                                    <input type="reset" class="btn btn-danger btInput" value="Limpar">
+                                </div>
                             </div>
                         </div>
                     </form>
                     <?php
-                    include_once ('controller/LivroController.php');
+                    include_once('controller/LivroController.php');
                     //envio dos dados para o banco
                     if (isset($_POST['cadastrarLivro'])) {
                         $titulo = $_POST['titulo'];
@@ -103,6 +110,43 @@
                     }
                     ?>
                 </div>
+                <table class="table">
+                    <thead class="thead-dark bg-dark text-white">
+                        <tr>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Compra (R$)</th>
+                            <th scope="col">Venda (R$)</th>
+                            <th scope="col">Estoque</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $pcTable = new LivroController();
+                        $listalivro = $pcTable->listarLivros();
+
+                        foreach ($listalivro as $lp) {
+
+                        ?>
+                            <tr>
+                                <td><?php print_r($lp->getIdLivro()); ?></td>
+                                <td><?php print_r($lp->getTitulo()); ?></td>
+                                <td><?php print_r($lp->getAutor()); ?></td>
+                                <td><?php print_r($lp->getEditora()); ?></td>
+                                <td><?php print_r($lp->getQtdEstoque()); ?></td>
+                                <td><a class="btn btn-outline-dark" href="#">Editar</a>
+                                    <a class="btn btn-outline-danger" href="#">Excluir</a>
+                                </td>
+                            </tr>
+
+                        <?php
+                        }
+
+                        ?>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>

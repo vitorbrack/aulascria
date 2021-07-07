@@ -7,6 +7,7 @@ class Conecta3{
         private $user = "root";
         private $password = "senac";
         private $base = "dblivro";
+        public $db;
     
         public function conectadb(){
             return mysqli_connect($this->url, $this->user, 
