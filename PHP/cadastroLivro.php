@@ -1,3 +1,8 @@
+<?php
+ include_once ('controller/LivroController.php');
+ include_once '../model/livro';
+ $li = new Livro();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -71,18 +76,57 @@
                     Cadastro de Livro
                 </div>
                 <div class="card-body border">
+                <?php
+                   
+                   //envio dos dados para o banco
+                   if (isset($_POST['cadastrarLivro'])) {
+                       $titulo = trim($_POST['titulo']);
+                      if($titulo !=""){
+                       $autor = $_POST['autor'];
+                       $editora = $_POST['editora'];
+                       $qtdEstoque = $_POST['qtdEstoque'];
+
+                       $pc = new LivroController();
+                       unset ($_POST['cadastrarLivro']);
+                       echo  $pc->inserirLivro(
+                           $titulo,
+                           $autor,
+                           $editora,
+                           $qtdEstoque
+                       );
+                       echo $pc->inserirLivro($titulo, $autor, $editora, $qtdEstoque);
+                       echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                           URL='cadastroLivro.php'\">"; 
+                   }
+               }
+
+               if(isset($_GET['limpar'])){
+                   $pc2 = new LivroController();
+                           $pr = $pc2->limpar();
+                           unset($_POST['limpar']);
+                           $_GET = null;
+                           echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+                                   URL='cadastroLivro.php'\">";
+                       }
+                       if (isset($_GET)) {
+                           $id = $_REQUEST['idlivro'];
+                           $pc = new LivroController();
+                           $pr = $pc->pesquisarLivroId($id);
+                   
+               }
+                   ?>
                     <form method="post" action="">
                         <div class="row g-3">
                             <div class="col-md-6 offset-md-3">
                                 <label>Código</label><br>
                                 <label>Titulo</label>
-                                <input type="text" class="form-control" name="titulo" required>
+                                <input type="text" class="form-control" name="titulo" value="<?php echo $pr->getTitulo();?>">
                                 <label>Autor</label>
-                                <input type="text" class="form-control" name="autor" required>
+                                <input type="text" class="form-control" name="autor" value="<?php echo $pr->getAutor();?>">
                                 <label>Editora</label>
-                                <input type="text" class="form-control" name="editora" required>
+                                <input type="text" class="form-control" name="editora" value="<?php echo $pr->getEditora();?>">
                                 <label>qtdEstoque</label>
-                                <input type="number" class="form-control" name="qtdEstoque" required>
+                                <input type="number" class="form-control" name="qtdEstoque" value="<?php echo $pr->getQtdEstoque();?>">
                                 <div class=" col-6 mx-auto">
                                     <input type="submit" name="cadastrarLivro" class="btn btn-success btInput" value="Enviar">
                                     &nbsp; &nbsp;
@@ -91,24 +135,7 @@
                             </div>
                         </div>
                     </form>
-                    <?php
-                    include_once('controller/LivroController.php');
-                    //envio dos dados para o banco
-                    if (isset($_POST['cadastrarLivro'])) {
-                        $titulo = $_POST['titulo'];
-                        $autor = $_POST['autor'];
-                        $editora = $_POST['editora'];
-                        $qtdEstoque = $_POST['qtdEstoque'];
-
-                        $pc = new LivroController();
-                        echo "<p>" . $pc->inserirLivro(
-                            $titulo,
-                            $autor,
-                            $editora,
-                            $qtdEstoque
-                        ) . "</p>";
-                    }
-                    ?>
+                   
                 </div>
                 <table class="table">
                     <thead class="thead-dark bg-dark text-white">
@@ -177,10 +204,9 @@
             </div>
         </div>
     </div>
-
-
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
