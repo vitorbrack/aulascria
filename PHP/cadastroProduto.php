@@ -1,5 +1,5 @@
 <?php
-include_once 'controller/ProdutoController.php';
+include_once 'controller/produtoController.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,7 @@ include_once 'controller/ProdutoController.php';
             margin-top: 20px;
             margin-bottom: 20px;
         }
+
         th,
         td {
             text-align: center;
@@ -84,11 +85,11 @@ include_once 'controller/ProdutoController.php';
 
                 <div class="card-body border">
                     <form method="post" action="">
-                        <div class="row"> 
+                        <div class="row">
                             <div class="col-md-6 offset-md-3">
                                 <label>Código</label> <br>
                                 <label>Produto</label>
-                                <input class="form-control" type="text" name="nomeProduto">
+                                <input class="form-control" type="text" name="nomeProduto" value="">
                                 <label>Valor compra</label>
                                 <input class="form-control" type="text" name="vlrcompra">
                                 <label>Valor de venda</label>
@@ -104,60 +105,42 @@ include_once 'controller/ProdutoController.php';
                         </div>
                     </form>
                 </div>
-                <table class="table">
-                    <thead class="thead-dark bg-dark text-white">
-                        <tr>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Compra (R$)</th>
-                            <th scope="col">Venda (R$)</th>
-                            <th scope="col">Estoque</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $pcTable = new ProdutoController();
-                        $listaProdutos = $pcTable->listarProdutos();
-
-                        $a = 0;
-                        if ($listaProdutos != null) {
-                        foreach ($listaProdutos as $lp) {
-                        $a++;   
-                            
-
-                            /* print_r("<tr><td>" . $lp->getIdProduto() . "</td>");
-                        print_r("<td>" . $lp->getNomeProduto() . "</td>");
-                        print_r("<td>" . $lp->getVlrCompra(). "</td>");
-                        print_r("<td>" . $lp->getVlrVenda() . "</td>");
-                        print_r("<td>" . $lp->getQtdEstoque() . "</td></tr>");
-                    }
-                    ?>
-                        print_r("<td>" . $lp->getQtdEstoque() . "</td></tr>");*/
-
-
-                        ?>
+                <div class="row" style="margin-top: 30px;">
+                    <table class="table table-striped table-responsive">
+                        <thead class="table-dark">
                             <tr>
-                                <td><?php print_r($lp->getIdproduto()); ?></td>
-                                <td><?php print_r($lp->getNomeProduto()); ?></td>
-                                <td><?php print_r($lp->getVlrCompra()); ?></td>
-                                <td><?php print_r($lp->getVlrVenda()); ?></td>
-                                <td><?php print_r($lp->getQtdEstoque()); ?></td>
-                                <td><a class="btn btn-light" 
-                                       href="#?id=<?php echo $lp->getIdProduto(); ?>">Editar</a>                                    
-                                    <button type="button" 
-                                            class="btn btn-light" data-bs-toggle="modal" 
-                                            data-bs-target="#exampleModal<?php echo $a;?>">
-                                    <a class="btn btn-danger" 
-                                       href="#?id=<?php echo $lp->getIdProduto(); ?>">Excluir</a>                                    
-                                    <button type="button" 
-                                            class="btn btn-light" data-bs-toggle="modal" 
-                                            data-bs-target="#exampleModal<?php echo $a;?>">
-
-                                </td>
-                            </tr>    
-
-                            <div class="modal fade" id="exampleModal<?php echo $a;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Compra (R$)</th>
+                                <th>Venda (R$)</th>
+                                <th>Estoque</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $pcTable = new ProdutoController();
+                            $listaProdutos = $pcTable->listarProdutos();
+                            $a = 0;
+                            if ($listaProdutos != null) {
+                                foreach ($listaProdutos as $lp) {
+                                    $a++;
+                            ?>
+                                    <tr>
+                                        <td><?php print_r($lp->getIdproduto()); ?></td>
+                                        <td><?php print_r($lp->getNomeProduto()); ?></td>
+                                        <td><?php print_r($lp->getVlrCompra()); ?></td>
+                                        <td><?php print_r($lp->getVlrVenda()); ?></td>
+                                        <td><?php print_r($lp->getQtdEstoque()); ?></td>
+                                        <td><a class="btn btn-light" href="controller/editarProduto.php?id=<?php echo $lp->getIdproduto(); ?>">
+                                                editar</a>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a;?>" >
+                        excluir
+                    </button>
+                                        </td>
+                                    </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal<?php echo $a;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -165,28 +148,40 @@ include_once 'controller/ProdutoController.php';
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Contexto....<?php echo $lp->getIdProduto(); ?>
+                                <form method="get" action="controller/excluirproduto.php">
+                                            <label><strong>Deseja excluir o produto <?php echo $lp->getNomeProduto(); ?>?</strong></label>
+                                                <input type="hidden" name="ide"
+                                                    value="<?php echo $lp->getIdproduto(); ?>">
+                                                
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Sim</button>
+                                                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                            </div>
+                                            </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Sim</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        <?php
-
-                        }
-                    }
-                    
-                        ?>
-                    </tbody>
-                </table>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -7,38 +7,108 @@ class produto{
     private $vlrVenda;
     private $qtdEstoque;
 
-    function setidproduto($idproduto){
-        $this->idproduto = $idproduto;
-    }
-    function getidproduto(){
+    
+
+
+    /**
+     * Get the value of idproduto
+     */ 
+    public function getIdproduto()
+    {
         return $this->idproduto;
     }
-    function setnomeProduto($nomeProduto){
-        $this->nomeProduto = $nomeProduto;
+
+    /**
+     * Set the value of idproduto
+     *
+     * @return  self
+     */ 
+    public function setIdproduto($idproduto)
+    {
+        $this->idproduto = $idproduto;
+
+        return $this;
     }
-    function getnomeProduto(){
+
+    /**
+     * Get the value of nomeProduto
+     */ 
+    public function getNomeProduto()
+    {
         return $this->nomeProduto;
     }
-    function setvlrCompra($vlrCompra){
-        $this->vlrCompra = $vlrCompra;
+
+    /**
+     * Set the value of nomeProduto
+     *
+     * @return  self
+     */ 
+    public function setNomeProduto($nomeProduto)
+    {
+        $this->nomeProduto = $nomeProduto;
+
+        return $this;
     }
-    function getvlrCompra(){
+
+    /**
+     * Get the value of vlrCompra
+     */ 
+    public function getVlrCompra()
+    {
         return $this->vlrCompra;
     }
-    function setvlrVenda($vlrVenda){
-        $this->vlrVenda = $vlrVenda;
+
+    /**
+     * Set the value of vlrCompra
+     *
+     * @return  self
+     */ 
+    public function setVlrCompra($vlrCompra)
+    {
+        $this->vlrCompra = $vlrCompra;
+
+        return $this;
     }
-    function getvlrVenda(){
+
+    /**
+     * Get the value of vlrVenda
+     */ 
+    public function getVlrVenda()
+    {
         return $this->vlrVenda;
     }
-    function setqtdEstoque($qtdEstoque){
-        $this->qtdEstoque = $qtdEstoque;
+
+    /**
+     * Set the value of vlrVenda
+     *
+     * @return  self
+     */ 
+    public function setVlrVenda($vlrVenda)
+    {
+        $this->vlrVenda = $vlrVenda;
+
+        return $this;
     }
-    function getqtdEstoque(){
+
+    /**
+     * Get the value of qtdEstoque
+     */ 
+    public function getQtdEstoque()
+    {
         return $this->qtdEstoque;
     }
 
+    /**
+     * Set the value of qtdEstoque
+     *
+     * @return  self
+     */ 
+    public function setQtdEstoque($qtdEstoque)
+    {
+        $this->qtdEstoque = $qtdEstoque;
 
+        return $this;
+    }
 }
 
 

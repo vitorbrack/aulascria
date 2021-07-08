@@ -9,10 +9,10 @@ class ProdutoController {
 
         $produto = new produto();
 
-        $produto->setnomeProduto($nomeProduto);
-        $produto->setvlrCompra($vlrcompra);
-        $produto->setvlrVenda($vlrvenda);
-        $produto->setqtdEstoque($qtdEstoque);
+        $produto->setNomeProduto($nomeProduto);
+        $produto->setVlrCompra($vlrcompra);
+        $produto->setVlrVenda($vlrvenda);
+        $produto->setQtdEstoque($qtdEstoque);
         
 
         $daoProduto = new DaoProduto();
@@ -21,7 +21,26 @@ class ProdutoController {
 
     //metedo para carregar a lista de produtos que vem da DAO
         public function listarProdutos(){
-            $daoProduto = new daoProduto();
+            $daoProduto = new DaoProduto();
             return $daoProduto ->listarProdutoDAO();
         }
+
+public function excluirProduto($id){
+
+    $daoProduto = new DaoProduto;
+    $daoProduto->excluirProdutoDAO($id);
+ }
+   
+ public function editarProduto($id){
+
+     $daoProduto = new DaoProduto();
+     return $daoProduto->editarProdutoDAO($id);
+
+ }
+
+ public function pesquisarProdutoId($id){
+     $daoProduto = new DaoProduto
+     return  $daoProduto->pesquisarProdutoIdDAO($id);
+ }
 }
+
